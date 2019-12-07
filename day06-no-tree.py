@@ -5,7 +5,7 @@ data = get_data(day=6)
 def find_children(dtn, sat, occ):
     doi = 0
     i = 0
-    dtr = copy.copy(dn)
+    dtr = copy.copy(dtn)
     while True:
         cur = dtr.pop(i)
         if cur[0] == sat:
