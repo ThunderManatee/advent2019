@@ -2,19 +2,19 @@ from aocd import get_data
 import copy
 data = get_data(day=6)
 
-def find_children(dn, orb, corbs):
+def find_children(dtn, sat, occ):
     doi = 0
     i = 0
-    dr = copy.copy(dn)
+    dtr = copy.copy(dn)
     while True:
-        cur = dr.pop(i)
-        if cur[0] == orb:
-            doi += find_children(dn, cur[1], corbs+1) + corbs
+        cur = dtr.pop(i)
+        if cur[0] == sat:
+            doi += find_children(dtn, cur[1], occ+1) + occ
 
-        if len(dr) == 0:
+        if len(dtr) == 0:
             return doi
 
 
-dn = [(d[:3], d[4:]) for d in data.split('\n')]
-p1 = find_children(dn, 'COM', 1)
+dtn = [(d[:3], d[4:]) for d in data.split('\n')]
+p1 = find_children(dtn, 'COM', 1)
 print(p1)
