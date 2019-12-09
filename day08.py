@@ -1,4 +1,5 @@
 from aocd import get_data
+import copy
 data = [int(d) for d in get_data(day=8)]
 
 def count_numbers(data):
@@ -23,20 +24,21 @@ def count_numbers(data):
     return max_counts[1]*max_counts[2]
 
 def construct_img(data):
-    master = [[0]*25]*6
-    for d in range(10):
-        l = 150*d
+    dn = copy.copy(data)
+    master = [[2 for i in range(25)] for j in range(6)]
+    while True:
         for v in range(6):
-            r = 25*v
             for h in range(25):
-                p = h+r+l
-                print(l,r,p)
-                if data[p] != 2:
-                    master[v][h] = data[p]
+                p = dn.pop(0)
+                if  master[v][h] == 2:
+                    master[v][h] = p
+        if len(dn) == 0:
+            break
     return master
 
 print(f'P1: {count_numbers(data)}')
 img = construct_img(data)
+print(img)
 for i in img:
     for j in range(25):
         print(i[j], end='')
